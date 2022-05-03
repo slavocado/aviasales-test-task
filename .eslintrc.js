@@ -1,4 +1,5 @@
 module.exports = {
+  plugins: ['import'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 2020,
@@ -7,6 +8,14 @@ module.exports = {
   settings: {
     react: {
       version: 'detect',
+    },
+    'import/parsers': {
+      '@typescript-eslint/parser': ['.ts', '.tsx'],
+    },
+    'import/resolver': {
+      typescript: {
+        alwaysTryTypes: true, // always try to resolve types under `<root>@types` directory even it doesn't contain any source code, like `@types/unist`
+      },
     },
   },
   extends: [
@@ -18,8 +27,9 @@ module.exports = {
     'plugin:import/typescript',
     'plugin:jsx-a11y/recommended',
     'plugin:eslint-comments/recommended',
-    'prettier/@typescript-eslint',
-    'plugin:prettier/recommended',
+    // 'prettier/@typescript-eslint',
+    // 'plugin:prettier/recommended',
+    'prettier',
   ],
   rules: {
     'no-unused-vars': 'off',
@@ -29,5 +39,6 @@ module.exports = {
     'react/jsx-uses-react': 'off',
     'react/react-in-jsx-scope': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
+    'import/no-unresolved': 'error',
   },
 }
