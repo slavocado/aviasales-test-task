@@ -1,4 +1,5 @@
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   mode: 'development',
@@ -8,5 +9,8 @@ module.exports = {
   },
   plugins: [
     new ReactRefreshWebpackPlugin(),
+    new MiniCssExtractPlugin({
+      filename: 'styles.css',
+    })
   ]
 }

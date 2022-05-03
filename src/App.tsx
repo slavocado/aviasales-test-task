@@ -1,13 +1,58 @@
 import { FC } from 'react'
-import './styles.css'
-import IMAGE from './logo.png'
+import { styled } from '@linaria/react'
+import { Logo } from '@components/logo/Logo'
+import { Colors } from '@styles/colors'
+import { TransfersFilterContainer as TransfersFilter } from '@containers/transfers-filter'
+import { PriceFilterContainer as PriceFilter } from '@containers/price-filter'
+import { TicketsContainer as Tickets } from '@containers/tickets'
 
 export const App: FC = () => {
-  const f = 'fdfd'
   return (
-    <>
-      <h1> Aviasales {process.env.NODE_ENV} </h1>
-      <img src={IMAGE} alt="re" width="300" height="200" />
-    </>
+    <PageContainer>
+      <LogoContainer>
+        <Logo />
+      </LogoContainer>
+      <TwoColumnLayout>
+        <TransfersFilter />
+        <SecondColumn>
+          <PriceFilter />
+          <Tickets />
+        </SecondColumn>
+      </TwoColumnLayout>
+    </PageContainer>
   )
 }
+
+const PageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  color: ${Colors.black};
+  background-color: ${Colors.lightBlue};
+  padding: 40px 20px;
+`
+const LogoContainer = styled.div`
+  width: 80px;
+  height: 80px;
+  margin-bottom: 50px;
+`
+
+const TwoColumnLayout = styled.div`
+  display: grid;
+  align-items: start;
+  grid-template-columns: 1fr 4fr;
+  gap: 30px;
+  width: 100%;
+  max-width: 900px;
+
+  @media (max-width: 697px) {
+    grid-template-columns: 1fr;
+  }
+`
+
+const SecondColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+`
