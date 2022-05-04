@@ -22,7 +22,7 @@
       "@components/*": ["./components/*"],
       "@containers/*": ["./containers/*"],
       "@store/*": ["./store/*"],
-      "@styles/*": ["./styles/*"]
+      "@ts/*": ["./ts/*"]
     }
   },
   "include": ["src/**/*"],

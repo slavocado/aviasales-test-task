@@ -1,13 +1,12 @@
-import { Ticket } from '@components/ticket'
+import { TicketComponent } from '@components/ticket'
+import { ticketsMock } from 'mock/tickets'
 
 export const TicketsContainer = () => {
   return (
     <>
-      <Ticket />
-      <Ticket />
-      <Ticket />
-      <Ticket />
-      <Ticket />
+      {ticketsMock.map((ticket, index) => (
+        <TicketComponent key={index} {...ticket} />
+      ))}
     </>
   )
 }

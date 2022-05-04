@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import { styled } from '@linaria/react'
 import { Logo } from '@components/logo/Logo'
-import { Colors } from '@styles/colors'
+import { Colors } from '@ts/enums/colors'
 import { TransfersFilterContainer as TransfersFilter } from '@containers/transfers-filter'
 import { FastFilterContainer as FastFilter } from '@containers/fast-filter'
 import { TicketsContainer as Tickets } from '@containers/tickets'

@@ -1,6 +1,6 @@
 import { Checkbox } from '@components/checkbox'
 import { styled } from '@linaria/react'
-import { Colors } from '@styles/colors'
+import { Colors } from '@ts/enums/colors'
 import { useState } from 'react'
 
 export const TransfersFilter = () => {

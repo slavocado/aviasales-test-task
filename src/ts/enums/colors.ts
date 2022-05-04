@@ -8,4 +8,5 @@ export enum Colors {
   checkboxBlue = '#2196F3',
   checkboxLightBlue = '#F1FCFF',
   checkboxShadowBlue = '#89C7F9',
+  textGray = '#A0B0B9',
 }
