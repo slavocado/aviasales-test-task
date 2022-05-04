@@ -3,7 +3,7 @@ import { styled } from '@linaria/react'
 import { Logo } from '@components/logo/Logo'
 import { Colors } from '@styles/colors'
 import { TransfersFilterContainer as TransfersFilter } from '@containers/transfers-filter'
-import { PriceFilterContainer as PriceFilter } from '@containers/price-filter'
+import { FastFilterContainer as FastFilter } from '@containers/fast-filter'
 import { TicketsContainer as Tickets } from '@containers/tickets'
 
 export const App: FC = () => {
@@ -15,7 +15,7 @@ export const App: FC = () => {
       <TwoColumnLayout>
         <TransfersFilter />
         <SecondColumn>
-          <PriceFilter />
+          <FastFilter />
           <Tickets />
         </SecondColumn>
       </TwoColumnLayout>
