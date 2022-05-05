@@ -1,23 +1,20 @@
 import { styled } from '@linaria/react'
 import { Colors } from '@ts/enums/colors'
-import { FC, useCallback, useState } from 'react'
+import { FC, useCallback } from 'react'
 
 type CheckboxProps = {
   label: string
-  value: boolean | undefined
+  isChecked: boolean | undefined
   onChange(checked: boolean): void
 }
 
 export const Checkbox: FC<CheckboxProps> = ({
   label,
-  value = false,
+  isChecked = false,
   onChange,
 }) => {
-  const [isChecked, setIsChecked] = useState(value)
-
   const handleChange = useCallback(() => {
     onChange(!isChecked)
-    setIsChecked(!isChecked)
   }, [isChecked, onChange])
 
   return (

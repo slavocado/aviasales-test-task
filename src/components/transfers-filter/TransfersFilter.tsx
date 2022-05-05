@@ -12,18 +12,26 @@ export const TransfersFilter = () => {
 
   const handleChange1 = (checked: boolean) => {
     setCheckbox1(checked)
+    setCheckbox2(checked)
+    setCheckbox3(checked)
+    setCheckbox4(checked)
+    setCheckbox5(checked)
   }
   const handleChange2 = (checked: boolean) => {
     setCheckbox2(checked)
+    setCheckbox1(checked && checkbox3 && checkbox4 && checkbox5)
   }
   const handleChange3 = (checked: boolean) => {
     setCheckbox3(checked)
+    setCheckbox1(checkbox2 && checked && checkbox4 && checkbox5)
   }
   const handleChange4 = (checked: boolean) => {
     setCheckbox4(checked)
+    setCheckbox1(checkbox2 && checkbox3 && checked && checkbox5)
   }
   const handleChange5 = (checked: boolean) => {
     setCheckbox5(checked)
+    setCheckbox1(checkbox2 && checkbox3 && checkbox4 && checked)
   }
 
   const checkboxesInfo = [
@@ -63,7 +71,7 @@ export const TransfersFilter = () => {
             <CheckboxWrapper key={index}>
               <Checkbox
                 label={checkbox.label}
-                value={checkbox.value}
+                isChecked={checkbox.value}
                 onChange={checkbox.handler}
               />
             </CheckboxWrapper>
