@@ -1,6 +1,7 @@
 import { styled } from '@linaria/react'
 import { Colors } from '@ts/enums/colors'
 import { Ticket } from '@ts/types/ticket'
+import { getHHMMfromMinutes, getTimeInterval } from 'helpers'
 import { FC } from 'react'
 
 export const TicketComponent: FC<Ticket> = ({ price, segments }) => {
@@ -17,19 +18,21 @@ export const TicketComponent: FC<Ticket> = ({ price, segments }) => {
               <InfoName>
                 {segment.origin + ' - ' + segment.destination}
               </InfoName>
-              <InfoData>10:45 – 08:00</InfoData>
+              <InfoData>
+                {getTimeInterval(segment.date, segment.duration)}
+              </InfoData>
             </InfoBlock>
 
             <InfoBlock>
               <InfoName>В пути</InfoName>
-              <InfoData>{String(segment.duration)}</InfoData>
+              <InfoData>{getHHMMfromMinutes(segment.duration)}</InfoData>
             </InfoBlock>
 
             <InfoBlock>
               <InfoName>Пересадки</InfoName>
               <InfoData>
                 {segment.stops.map((stop, index) => (
-                  <span key={index}>{String(stop)} </span>
+                  <span key={index}>{stop} </span>
                 ))}
               </InfoData>
             </InfoBlock>
@@ -66,7 +69,6 @@ const Row = styled.div`
 const Price = styled.span`
   font-size: 24px;
   color: ${Colors.blue};
-  // font-weight: 600;
   margin-top: 5px;
 `
 
@@ -74,7 +76,6 @@ const InfoBlock = styled.div`
   display: flex;
   flex-direction: column;
   min-width: 140px;
-  // align-items: center;
 `
 
 const InfoName = styled.span`
