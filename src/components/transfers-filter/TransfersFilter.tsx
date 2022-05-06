@@ -114,7 +114,7 @@ const FilterContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  min-width: 300px;
+  min-width: 250px;
   padding: 20px 0 10px;
   background-color: ${Colors.white};
   border-radius: 5px;

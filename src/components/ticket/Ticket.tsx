@@ -82,6 +82,10 @@ const InfoBlock = styled.div`
   display: flex;
   flex-direction: column;
   min-width: 140px;
+
+  @media (max-width: 520px) {
+    min-width: 0;
+  }
 `
 
 const InfoName = styled.span`

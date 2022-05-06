@@ -46,7 +46,7 @@ const TwoColumnLayout = styled.div`
   width: 100%;
   max-width: 900px;
 
-  @media (max-width: 697px) {
+  @media (max-width: 800px) {
     grid-template-columns: 1fr;
   }
 `
