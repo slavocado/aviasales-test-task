@@ -9,6 +9,22 @@ export const TicketsContainer = () => {
   const dispatch = useAppDispatch()
   const ticketsState = useSelector((state: State) => state.tickets)
 
+  const tickets = ticketsState.tickets
+  const error = ticketsState.error
+  const loading = ticketsState.loading
+  const transfersFilter = ticketsState.transfersFilter
+
+  const ticketsToShow = tickets?.filter((ticket) => {
+    const oneWayStops = ticket.segments[0].stops
+    const wayBackStops = ticket.segments[1].stops
+    const stopsCount = transfersFilter?.transfersCount ?? []
+
+    return stopsCount.length === 0
+      ? true
+      : stopsCount.includes(oneWayStops.length) ||
+          stopsCount.includes(wayBackStops.length)
+  })
+
   const retryLoading = () => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
@@ -21,10 +37,6 @@ export const TicketsContainer = () => {
     dispatch(getTickets())
   }, [dispatch])
 
-  const tickets = ticketsState.tickets
-  const error = ticketsState.error
-  const loading = ticketsState.loading
-
   return (
     <>
       {loading && <span>Загрузка</span>}
@@ -36,8 +48,8 @@ export const TicketsContainer = () => {
       )}
       {!error &&
         !loading &&
-        (tickets !== undefined ? (
-          tickets.map((ticket, index) => (
+        (ticketsToShow !== undefined ? (
+          ticketsToShow.map((ticket, index) => (
             <TicketComponent key={index} {...ticket} />
           ))
         ) : (
