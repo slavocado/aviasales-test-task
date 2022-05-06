@@ -4,6 +4,8 @@ import { useSelector } from 'react-redux'
 import { getTickets } from '@store/actions/tickets'
 import { useAppDispatch, State } from '@store/index'
 import { useEffect } from 'react'
+import { styled } from '@linaria/react'
+import { Colors } from '@ts/enums/colors'
 
 export const TicketsContainer = () => {
   const dispatch = useAppDispatch()
@@ -65,7 +67,7 @@ export const TicketsContainer = () => {
       {error && (
         <>
           <span>Произошла ошибка при загрузке</span>
-          <button onClick={retryLoading}>Попробовать еще раз</button>
+          <RetryButton onClick={retryLoading}>Попробовать еще раз</RetryButton>
         </>
       )}
       {!error &&
@@ -80,3 +82,26 @@ export const TicketsContainer = () => {
     </>
   )
 }
+
+const RetryButton = styled.button`
+  display: grid;
+  place-items: center;
+  padding: 15px 10px;
+  border-radius: 5px;
+  background-color: ${Colors.white};
+  border: 1px solid ${Colors.lightGray};
+  color: ${Colors.black};
+  transition: all 150ms;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 12px;
+
+  &:hover {
+    background-color: ${Colors.lightGray};
+    cursor: pointer;
+  }
+  &:active {
+    background-color: ${Colors.blue};
+    color: ${Colors.white};
+  }
+`
