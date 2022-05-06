@@ -1,5 +1,6 @@
 import { State } from '@store/index'
 import { Ticket } from '@ts/types/ticket'
+import { fetchTickets } from 'api/tickets'
 import { ThunkAction } from 'redux-thunk'
 import {
   TicketsActionTypes,
@@ -16,13 +17,7 @@ export const getTickets =
         type: TICKETS_LOADING,
       })
 
-      const tickets: Ticket[] = await fetch('http://localhost:8081/')
-        .then((response) => {
-          return response.json()
-        })
-        .then((data) => {
-          return data.tickets
-        })
+      const tickets: Ticket[] = await fetchTickets()
 
       dispatch({
         type: TICKETS_SUCCESS,
