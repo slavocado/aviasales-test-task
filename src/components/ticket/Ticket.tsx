@@ -29,7 +29,13 @@ export const TicketComponent: FC<Ticket> = ({ price, segments }) => {
             </InfoBlock>
 
             <InfoBlock>
-              <InfoName>Пересадки</InfoName>
+              <InfoName>
+                {segment.stops.length === 0 ? (
+                  <span>Нет пересадок</span>
+                ) : (
+                  <span>Пересадки</span>
+                )}
+              </InfoName>
               <InfoData>
                 {segment.stops.map((stop, index) => (
                   <span key={index}>{stop} </span>
