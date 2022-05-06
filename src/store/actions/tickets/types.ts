@@ -1,10 +1,11 @@
-import { TransfersFilter } from '@ts/types/filters'
+import { FastFilter, TransfersFilter } from '@ts/types/filters'
 import { Ticket } from '@ts/types/ticket'
 
 export const TICKETS_LOADING = 'TICKETS_LOADING'
 export const TICKETS_SUCCESS = 'TICKETS_SUCCESS'
 export const TICKETS_FAIL = 'TICKETS_FAIL'
 export const SET_TRANSFERS_FILTER = 'SET_TRANSFERS_FILTER'
+export const SET_FAST_FILTER = 'SET_FAST_FILTER'
 
 interface TicketsLoading {
   type: typeof TICKETS_LOADING
@@ -20,9 +21,14 @@ interface SetTransfersFilter {
   type: typeof SET_TRANSFERS_FILTER
   payload: TransfersFilter
 }
+interface SetFastFilter {
+  type: typeof SET_FAST_FILTER
+  payload: FastFilter
+}
 
 export type TicketsActionTypes =
   | TicketsLoading
   | TicketsSuccess
   | TicketsFail
   | SetTransfersFilter
+  | SetFastFilter

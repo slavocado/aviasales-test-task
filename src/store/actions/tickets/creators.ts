@@ -1,9 +1,10 @@
 import { State } from '@store/index'
-import { TransfersFilter } from '@ts/types/filters'
+import { FastFilter, TransfersFilter } from '@ts/types/filters'
 import { Ticket } from '@ts/types/ticket'
 import { fetchTickets } from 'api/tickets'
 import { ThunkAction } from 'redux-thunk'
 import {
+  SET_FAST_FILTER,
   SET_TRANSFERS_FILTER,
   TicketsActionTypes,
   TICKETS_FAIL,
@@ -36,6 +37,13 @@ export const getTickets =
 export const setTransfersFilter = (filter: TransfersFilter) => {
   return {
     type: SET_TRANSFERS_FILTER,
+    payload: filter,
+  }
+}
+
+export const setFastFilter = (filter: FastFilter) => {
+  return {
+    type: SET_FAST_FILTER,
     payload: filter,
   }
 }

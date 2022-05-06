@@ -1,12 +1,13 @@
 // import * as actionTypes from '../actions/tickets/types'
 import {
+  SET_FAST_FILTER,
   SET_TRANSFERS_FILTER,
   TicketsActionTypes,
   TICKETS_FAIL,
   TICKETS_LOADING,
   TICKETS_SUCCESS,
 } from '@store/actions/tickets/types'
-import { TransfersFilter } from '@ts/types/filters'
+import { FastFilter, TransfersFilter } from '@ts/types/filters'
 import { Ticket } from '@ts/types/ticket'
 
 export type TicketsState = {
@@ -14,6 +15,7 @@ export type TicketsState = {
   tickets?: Ticket[]
   error: boolean
   transfersFilter?: TransfersFilter
+  fastFilter?: FastFilter
 }
 
 const initialState: TicketsState = {
@@ -49,6 +51,11 @@ export const ticketsReducer = (
       return {
         ...state,
         transfersFilter: action.payload,
+      }
+    case SET_FAST_FILTER:
+      return {
+        ...state,
+        fastFilter: action.payload,
       }
     default:
       return state

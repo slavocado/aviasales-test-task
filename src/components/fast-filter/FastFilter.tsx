@@ -1,9 +1,14 @@
 import { ButtonGroup } from '@components/button-group'
 import { styled } from '@linaria/react'
+import { FC } from 'react'
 
-export const FastFilter = () => {
+type FastFilterProps = {
+  onButtonClick(id: number): void
+}
+
+export const FastFilter: FC<FastFilterProps> = ({ onButtonClick }) => {
   const handleFilterChange = (id: number) => {
-    console.log(id, ' button pressed')
+    onButtonClick(id)
   }
   return (
     <FilterContainer>
