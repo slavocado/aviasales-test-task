@@ -16,12 +16,12 @@ export const getTickets =
         type: TICKETS_LOADING,
       })
 
-      const tickets: Ticket[] = await fetch('http://localhost:8080/')
+      const tickets: Ticket[] = await fetch('http://localhost:8081/')
         .then((response) => {
           return response.json()
         })
-        .then((tickets) => {
-          return tickets
+        .then((data) => {
+          return data.tickets
         })
 
       dispatch({
@@ -32,5 +32,6 @@ export const getTickets =
       dispatch({
         type: TICKETS_FAIL,
       })
+      console.error('aaaaa', error)
     }
   }

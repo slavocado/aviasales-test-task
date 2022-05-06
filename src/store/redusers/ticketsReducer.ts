@@ -10,10 +10,12 @@ import { Ticket } from '@ts/types/ticket'
 export type TicketsState = {
   loading: boolean
   tickets?: Ticket[]
+  error: boolean
 }
 
 const initialState: TicketsState = {
   loading: false,
+  error: false,
 }
 
 export const ticketsReducer = (
@@ -23,15 +25,21 @@ export const ticketsReducer = (
   switch (action.type) {
     case TICKETS_FAIL:
       return {
+        ...state,
         loading: false,
+        error: true,
       }
     case TICKETS_LOADING:
       return {
+        ...state,
         loading: true,
+        error: false,
       }
     case TICKETS_SUCCESS:
       return {
+        ...state,
         loading: false,
+        error: false,
         tickets: action.payload,
       }
     default:
