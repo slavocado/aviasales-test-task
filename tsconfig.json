@@ -22,7 +22,8 @@
       "@components/*": ["./components/*"],
       "@containers/*": ["./containers/*"],
       "@store/*": ["./store/*"],
-      "@ts/*": ["./ts/*"]
+      "@ts/*": ["./ts/*"],
+      "@assets/*": ["../assets/*"],
     }
   },
   "include": ["src/**/*"],

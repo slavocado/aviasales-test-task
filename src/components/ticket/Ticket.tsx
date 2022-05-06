@@ -3,6 +3,7 @@ import { Colors } from '@ts/enums/colors'
 import { Ticket } from '@ts/types/ticket'
 import { getHHMMfromMinutes, getTimeInterval } from 'helpers'
 import { FC } from 'react'
+import s7Logo from '@assets/images/seven-logo.png'
 
 export const TicketComponent: FC<Ticket> = ({ price, segments }) => {
   return (
@@ -10,6 +11,7 @@ export const TicketComponent: FC<Ticket> = ({ price, segments }) => {
       <TicketContainer>
         <Row className="mb20">
           <Price> {price} P</Price>
+          <img src={s7Logo} alt="S seven logo" />
         </Row>
 
         {segments.map((segment, index) => (
