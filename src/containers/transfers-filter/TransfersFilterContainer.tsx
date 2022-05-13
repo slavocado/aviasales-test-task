@@ -1,5 +1,5 @@
 import { TransfersFilter } from '@components/transfers-filter'
-import { setTransfersFilter } from '@store/actions/tickets'
+import { setTransfersFilter } from '@store/filters'
 import { useDispatch } from 'react-redux'
 
 export const TransfersFilterContainer = () => {
