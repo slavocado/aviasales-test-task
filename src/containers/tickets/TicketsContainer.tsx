@@ -1,23 +1,24 @@
 import { TicketComponent } from '@components/ticket'
 // import { ticketsMock } from 'mock/tickets'
 import { useSelector } from 'react-redux'
-import { getTickets } from '@store/actions/tickets'
-import { useAppDispatch, State } from '@store/index'
-import { useEffect } from 'react'
-import { styled } from '@linaria/react'
-import { Colors } from '@ts/enums/colors'
+import { RootState } from '@store/index'
+import { useGetAllTicketsQuery } from '@store/tickets'
 
 export const TicketsContainer = () => {
-  const dispatch = useAppDispatch()
-  const ticketsState = useSelector((state: State) => state.tickets)
+  const {
+    data: tickets,
+    error,
+    isLoading,
+  } = useGetAllTicketsQuery('', {
+    pollingInterval: 3000,
+  })
 
-  const tickets = ticketsState.tickets
-  const error = ticketsState.error
-  const loading = ticketsState.loading
-  const transfersFilter = ticketsState.transfersFilter
-  const fastFilter = ticketsState.fastFilter
+  const transfersFilter = useSelector(
+    (state: RootState) => state.filters.transfersFilter
+  )
+  const fastFilter = useSelector((state: RootState) => state.filters.fastFilter)
 
-  const ticketsToShow = tickets
+  const ticketsToShow = tickets?.tickets
     ?.filter((ticket) => {
       const oneWayStops = ticket.segments[0].stops
       const wayBackStops = ticket.segments[1].stops
@@ -49,29 +50,16 @@ export const TicketsContainer = () => {
       }
     })
 
-  const retryLoading = () => {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    dispatch(getTickets())
-  }
-
-  useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    dispatch(getTickets())
-  }, [dispatch])
-
   return (
     <>
-      {loading && <span>Загрузка</span>}
+      {isLoading && <span>Загрузка</span>}
       {error && (
         <>
           <span>Произошла ошибка при загрузке</span>
-          <RetryButton onClick={retryLoading}>Попробовать еще раз</RetryButton>
         </>
       )}
       {!error &&
-        !loading &&
+        !isLoading &&
         (ticketsToShow !== undefined ? (
           ticketsToShow.map((ticket, index) => (
             <TicketComponent key={index} {...ticket} />
@@ -82,26 +70,3 @@ export const TicketsContainer = () => {
     </>
   )
 }
-
-const RetryButton = styled.button`
-  display: grid;
-  place-items: center;
-  padding: 15px 10px;
-  border-radius: 5px;
-  background-color: ${Colors.white};
-  border: 1px solid ${Colors.lightGray};
-  color: ${Colors.black};
-  transition: all 150ms;
-  text-transform: uppercase;
-  font-weight: 600;
-  font-size: 12px;
-
-  &:hover {
-    background-color: ${Colors.lightGray};
-    cursor: pointer;
-  }
-  &:active {
-    background-color: ${Colors.blue};
-    color: ${Colors.white};
-  }
-`
