@@ -1,49 +1,46 @@
-import { State } from '@store/index'
-import { FastFilter, TransfersFilter } from '@ts/types/filters'
 import { Ticket } from '@ts/types/ticket'
-import { fetchTickets } from 'api/tickets'
-import { ThunkAction } from 'redux-thunk'
-import {
-  SET_FAST_FILTER,
-  SET_TRANSFERS_FILTER,
-  TicketsActionTypes,
-  TICKETS_FAIL,
-  TICKETS_LOADING,
-  TICKETS_SUCCESS,
-} from './types'
 
-export const getTickets =
-  (): ThunkAction<Promise<void>, State, unknown, TicketsActionTypes> =>
-  async (dispatch) => {
-    try {
-      dispatch({
-        type: TICKETS_LOADING,
-      })
+import { createAsyncAction } from 'typesafe-actions'
+// import { TICKETS_FAIL, TICKETS_LOADING, TICKETS_SUCCESS } from './types'
 
-      const tickets: Ticket[] = await fetchTickets()
+// export const getTickets =
+//   (): ThunkAction<Promise<void>, State, unknown, TicketsActionTypes> =>
+//   async (dispatch) => {
+//     try {
+//       dispatch({
+//         type: TICKETS_LOADING,
+//       })
 
-      dispatch({
-        type: TICKETS_SUCCESS,
-        payload: tickets,
-      })
-    } catch (error) {
-      dispatch({
-        type: TICKETS_FAIL,
-      })
-      console.error('aaaaa', error)
-    }
-  }
+//       const tickets: Ticket[] = await fetchTickets()
 
-export const setTransfersFilter = (filter: TransfersFilter) => {
-  return {
-    type: SET_TRANSFERS_FILTER,
-    payload: filter,
-  }
-}
+//       dispatch({
+//         type: TICKETS_SUCCESS,
+//         payload: tickets,
+//       })
+//     } catch (error) {
+//       dispatch({
+//         type: TICKETS_FAIL,
+//       })
+//       console.error('aaaaa', error)
+//     }
+//   }
 
-export const setFastFilter = (filter: FastFilter) => {
-  return {
-    type: SET_FAST_FILTER,
-    payload: filter,
-  }
-}
+// export const setTransfersFilter = (filter: TransfersFilter) => {
+//   return {
+//     type: SET_TRANSFERS_FILTER,
+//     payload: filter,
+//   }
+// }
+
+// export const setFastFilter = (filter: FastFilter) => {
+//   return {
+//     type: SET_FAST_FILTER,
+//     payload: filter,
+//   }
+// }
+
+export const getTicketsAsync = createAsyncAction(
+  'TICKETS_LOADING',
+  'TICKETS_SUCCESS',
+  'TICKETS_FAIL'
+)<undefined, Ticket[], string>()

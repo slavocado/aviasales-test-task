@@ -1,15 +1,15 @@
 import { TicketComponent } from '@components/ticket'
 // import { ticketsMock } from 'mock/tickets'
-import { useSelector } from 'react-redux'
-import { getTickets } from '@store/actions/tickets'
-import { useAppDispatch, State } from '@store/index'
-import { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+// import { getTickets } from '@store/actions'
+// import { useEffect } from 'react'
 import { styled } from '@linaria/react'
 import { Colors } from '@ts/enums/colors'
 
 export const TicketsContainer = () => {
-  const dispatch = useAppDispatch()
-  const ticketsState = useSelector((state: State) => state.tickets)
+  // const dispatch = useAppDispatch()
+  const ticketsState = useSelector((state: any) => state.tickets)
+  const numberState = useSelector((state: any) => state.number)
 
   const tickets = ticketsState.tickets
   const error = ticketsState.error
@@ -52,14 +52,14 @@ export const TicketsContainer = () => {
   const retryLoading = () => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    dispatch(getTickets())
+    // dispatch(getTickets())
   }
 
-  useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    dispatch(getTickets())
-  }, [dispatch])
+  // useEffect(() => {
+  //   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  //   // @ts-ignore
+  //   dispatch(getTickets())
+  // }, [dispatch])
 
   return (
     <>
