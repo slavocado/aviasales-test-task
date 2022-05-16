@@ -21,7 +21,6 @@ export const filtersSlice = createSlice({
   },
 })
 
-// Action creators are generated for each case reducer function
 export const { setTransfersFilter, setFastFilter } = filtersSlice.actions
 
 export const filtersReducer = filtersSlice.reducer
