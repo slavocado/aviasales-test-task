@@ -6,7 +6,6 @@ interface TicketsResponse {
   tickets: Ticket[]
 }
 
-// Define a service using a base URL and expected endpoints
 export const ticketsApi = createApi({
   reducerPath: 'ticketsApi',
   baseQuery: fetchBaseQuery({ baseUrl: URL }),
@@ -17,6 +16,4 @@ export const ticketsApi = createApi({
   }),
 })
 
-// Export hooks for usage in functional components, which are
-// auto-generated based on the defined endpoints
 export const { useGetAllTicketsQuery } = ticketsApi

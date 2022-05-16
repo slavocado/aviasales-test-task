@@ -47,9 +47,6 @@ export const ButtonGroup: FC<ButtonGroupProps> = ({ onButtonClick }) => {
           {label}
         </Button>
       ))}
-      {/* <Button className="active">Самый дешевый</Button>
-      <Button>Самый быстрый</Button>
-      <Button>Оптимальный</Button> */}
     </ButtonGroupContainer>
   )
 }
