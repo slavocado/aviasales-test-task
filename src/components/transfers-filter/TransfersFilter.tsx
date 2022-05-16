@@ -4,87 +4,98 @@ import { Colors } from '@ts/enums/colors'
 import { FC, useState, useCallback } from 'react'
 
 type TransfersFilterProps = {
-  onChange(transfers: number[]): void
+  onChange(transfersCount: number[]): void
 }
 
-type CheckboxType =
-  | 'check_1'
-  | 'check_2'
-  | 'check_3'
-  | 'check_4'
-  | 'check_5';
+type CheckboxType = 'check_1' | 'check_2' | 'check_3' | 'check_4' | 'check_5'
 
 interface CheckboxInfo {
-  label: string;
-  handleChangeOther?(checked: boolean): StoreType;
+  label: string
+  handleChangeOther?(checked: boolean, map: StoreType): StoreType
+  transfersCount?: number
 }
 
-type StoreType = Partial<Record<CheckboxType, boolean>>;
+type StoreType = Partial<Record<CheckboxType, boolean>>
 
 const checkboxesInfo: Record<CheckboxType, CheckboxInfo> = {
   check_1: {
     label: 'Все',
-    handleChangeOther: checked => {
+    handleChangeOther: (checked) => {
       return {
-        check_2: !checked,
+        check_2: checked,
         check_3: checked,
-      };
-    }
+        check_4: checked,
+        check_5: checked,
+      }
+    },
   },
   check_2: {
     label: 'Без пересадок',
+    transfersCount: 0,
+    handleChangeOther: (checked, map) => ({
+      check_1: checked && map.check_3 && map.check_4 && map.check_5,
+    }),
   },
   check_3: {
     label: '1 пересадка',
+    transfersCount: 1,
+    handleChangeOther: (checked, map) => ({
+      check_1: map.check_2 && checked && map.check_4 && map.check_5,
+    }),
   },
   check_4: {
     label: '2 пересадка',
+    transfersCount: 2,
+    handleChangeOther: (checked, map) => ({
+      check_1: map.check_2 && map.check_3 && checked && map.check_5,
+    }),
   },
   check_5: {
     label: '3 пересадка',
+    transfersCount: 3,
+    handleChangeOther: (checked, map) => ({
+      check_1: map.check_2 && map.check_3 && map.check_4 && checked,
+    }),
   },
-};
+}
 const chbs = Object.keys(checkboxesInfo) as CheckboxType[]
 
 export const TransfersFilter: FC<TransfersFilterProps> = ({ onChange }) => {
   const [map, handleChange] = useState<StoreType>({
     check_1: false,
+    check_2: false,
+    check_3: false,
+    check_4: false,
+    check_5: false,
   })
 
-  const fabricState = useCallback((key: CheckboxType) => {
-    const {handleChangeOther} = checkboxesInfo[key];
+  const fabricState = useCallback(
+    (key: CheckboxType) => {
+      const { handleChangeOther } = checkboxesInfo[key]
 
-    return (checked: boolean) => {
-      const otherConfig = handleChangeOther?.(checked) || {};
+      return (checked: boolean) => {
+        const otherConfig = handleChangeOther?.(checked, map) || {}
+        const newMap = {
+          ...map,
+          ...otherConfig,
+          [key]: checked,
+        }
 
-      handleChange({
-        ...map,
-        ...otherConfig,
-        [key]: checked,
-      })
-    }
-  }, [map, handleChange]);
+        const transfersArr: number[] = []
+        chbs.forEach((checkbox) => {
+          const isChecked = newMap[checkbox]
+          const transfers = checkboxesInfo[checkbox]?.transfersCount
+          if (isChecked && transfers !== undefined) {
+            transfersArr.push(transfers)
+          }
+        })
 
-  // const handleChange2 = (checked: boolean) => {
-  //   setCheckbox2(checked)
-  //   setCheckbox1(checked && checkbox3 && checkbox4 && checkbox5)
-  //   setChecked(0, checked)
-  // }
-  // const handleChange3 = (checked: boolean) => {
-  //   setCheckbox3(checked)
-  //   setCheckbox1(checkbox2 && checked && checkbox4 && checkbox5)
-  //   setChecked(1, checked)
-  // }
-  // const handleChange4 = (checked: boolean) => {
-  //   setCheckbox4(checked)
-  //   setCheckbox1(checkbox2 && checkbox3 && checked && checkbox5)
-  //   setChecked(2, checked)
-  // }
-  // const handleChange5 = (checked: boolean) => {
-  //   setCheckbox5(checked)
-  //   setCheckbox1(checkbox2 && checkbox3 && checkbox4 && checked)
-  //   setChecked(3, checked)
-  // }
+        onChange(transfersArr)
+        handleChange(newMap)
+      }
+    },
+    [map, handleChange, onChange]
+  )
 
   return (
     <>
@@ -93,16 +104,16 @@ export const TransfersFilter: FC<TransfersFilterProps> = ({ onChange }) => {
 
         <CheckboxesContainer>
           {chbs.map((key) => {
-            const item = checkboxesInfo[key];
+            const item = checkboxesInfo[key]
 
             return (
-                <CheckboxWrapper key={key}>
-                  <Checkbox
-                      label={item.label}
-                      isChecked={map[key]}
-                      onChange={fabricState(key)}
-                  />
-                </CheckboxWrapper>
+              <CheckboxWrapper key={key}>
+                <Checkbox
+                  label={item.label}
+                  isChecked={map[key]}
+                  onChange={fabricState(key)}
+                />
+              </CheckboxWrapper>
             )
           })}
         </CheckboxesContainer>
