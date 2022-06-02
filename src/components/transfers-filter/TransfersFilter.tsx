@@ -1,7 +1,8 @@
-import { Checkbox } from '@components/checkbox'
 import { styled } from '@linaria/react'
-import { Colors } from '@ts/enums/colors'
 import { FC, useState, useCallback } from 'react'
+
+import { Checkbox } from '@components/checkbox'
+import { Colors } from '@ts/enums/colors'
 
 type TransfersFilterProps = {
   onChange(transfersCount: number[]): void

@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { ticketsApi } from './tickets/'
+
 import { filtersReducer } from './filters/'
+import { ticketsApi } from './tickets/'
 
 const reducers = {
   filters: filtersReducer,

@@ -1,6 +1,7 @@
+import { useSelector } from 'react-redux'
+
 import { TicketComponent } from '@components/ticket'
 // import { ticketsMock } from 'mock/tickets'
-import { useSelector } from 'react-redux'
 import { RootState } from '@store/index'
 import { useGetAllTicketsQuery } from '@store/tickets'
 

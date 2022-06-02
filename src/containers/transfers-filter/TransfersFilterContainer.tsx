@@ -1,6 +1,7 @@
+import { useDispatch } from 'react-redux'
+
 import { TransfersFilter } from '@components/transfers-filter'
 import { setTransfersFilter } from '@store/filters'
-import { useDispatch } from 'react-redux'
 
 export const TransfersFilterContainer = () => {
   const dispatch = useDispatch()

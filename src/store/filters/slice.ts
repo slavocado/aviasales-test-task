@@ -1,5 +1,6 @@
-import { FastFilter, TransfersFilter } from '@ts/types/filters'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+
+import { FastFilter, TransfersFilter } from '@ts/types/filters'
 
 export type TicketsState = {
   transfersFilter?: TransfersFilter

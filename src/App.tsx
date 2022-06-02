@@ -1,10 +1,11 @@
-import { FC } from 'react'
 import { styled } from '@linaria/react'
+import { FC } from 'react'
+
 import { Logo } from '@components/logo/Logo'
-import { Colors } from '@ts/enums/colors'
-import { TransfersFilterContainer as TransfersFilter } from '@containers/transfers-filter'
 import { FastFilterContainer as FastFilter } from '@containers/fast-filter'
 import { TicketsContainer as Tickets } from '@containers/tickets'
+import { TransfersFilterContainer as TransfersFilter } from '@containers/transfers-filter'
+import { Colors } from '@ts/enums/colors'
 
 export const App: FC = () => {
   return (

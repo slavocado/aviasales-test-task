@@ -1,6 +1,7 @@
 import { styled } from '@linaria/react'
-import { Colors } from '@ts/enums/colors'
 import { FC, useState } from 'react'
+
+import { Colors } from '@ts/enums/colors'
 
 type ButtonGroupProps = {
   onButtonClick(id: number): void

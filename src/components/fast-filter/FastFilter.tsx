@@ -1,6 +1,7 @@
-import { ButtonGroup } from '@components/button-group'
 import { styled } from '@linaria/react'
 import { FC } from 'react'
+
+import { ButtonGroup } from '@components/button-group'
 
 type FastFilterProps = {
   onButtonClick(id: number): void

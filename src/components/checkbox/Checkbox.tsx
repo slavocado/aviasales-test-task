@@ -1,6 +1,7 @@
 import { styled } from '@linaria/react'
-import { Colors } from '@ts/enums/colors'
 import { FC, useCallback } from 'react'
+
+import { Colors } from '@ts/enums/colors'
 
 type CheckboxProps = {
   label: string
