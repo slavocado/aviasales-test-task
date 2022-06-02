@@ -5,7 +5,7 @@ import { Logo } from '@components/logo/Logo'
 import { FastFilterContainer as FastFilter } from '@containers/fast-filter'
 import { TicketsContainer as Tickets } from '@containers/tickets'
 import { TransfersFilterContainer as TransfersFilter } from '@containers/transfers-filter'
-import { Colors } from '@ts/enums/colors'
+import { COLORS } from '@ts/constants/colors'
 
 export const App: FC = () => {
   return (
@@ -29,8 +29,8 @@ const PageContainer = styled.div`
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
-  color: ${Colors.black};
-  background-color: ${Colors.lightBlue};
+  color: ${COLORS.BLACK};
+  background-color: ${COLORS.LIGHT_BLUE};
   padding: 40px 20px;
 `
 const LogoContainer = styled.div`

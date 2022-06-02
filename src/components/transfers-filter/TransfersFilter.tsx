@@ -2,7 +2,7 @@ import { styled } from '@linaria/react'
 import { FC, useState, useCallback } from 'react'
 
 import { Checkbox } from '@components/checkbox'
-import { Colors } from '@ts/enums/colors'
+import { COLORS } from '@ts/constants/colors'
 
 type TransfersFilterProps = {
   onChange(transfersCount: number[]): void
@@ -129,10 +129,10 @@ const FilterContainer = styled.div`
   align-items: stretch;
   min-width: 250px;
   padding: 20px 0 10px;
-  background-color: ${Colors.white};
+  background-color: ${COLORS.WHITE};
   border-radius: 5px;
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
-  color: ${Colors.black};
+  color: ${COLORS.BLACK};
 `
 
 const FilterHeader = styled.span`
@@ -151,7 +151,7 @@ const CheckboxesContainer = styled.div`
 const CheckboxWrapper = styled.div`
   transition: all 300ms;
   &:hover {
-    background-color: ${Colors.checkboxLightBlue};
+    background-color: ${COLORS.CHECKBOX_LIGHT_BLUE};
   }
   &:last-child {
     margin-bottom: 0px;

@@ -2,7 +2,7 @@ import { styled } from '@linaria/react'
 import { FC } from 'react'
 
 import s7Logo from '@assets/images/seven-logo.png'
-import { Colors } from '@ts/enums/colors'
+import { COLORS } from '@ts/constants/colors'
 import { Ticket } from '@ts/types/ticket'
 import { getHHMMfromMinutes, getTimeInterval } from 'helpers'
 
@@ -57,7 +57,7 @@ const TicketContainer = styled.div`
   align-items: stretch;
   min-height: 180px;
   width: 100%;
-  background-color: ${Colors.white};
+  background-color: ${COLORS.WHITE};
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   padding: 20px;
@@ -77,7 +77,7 @@ const Row = styled.div`
 
 const Price = styled.span`
   font-size: 24px;
-  color: ${Colors.blue};
+  color: ${COLORS.BLUE};
   margin-top: 5px;
 `
 
@@ -94,12 +94,12 @@ const InfoBlock = styled.div`
 const InfoName = styled.span`
   font-size: 12px;
   font-weight: 600;
-  color: ${Colors.textGray};
+  color: ${COLORS.TEXT_GRAY};
   margin-bottom: 5px;
 `
 
 const InfoData = styled.span`
   font-size: 14px;
   font-weight: 600;
-  color: ${Colors.black};
+  color: ${COLORS.BLACK};
 `

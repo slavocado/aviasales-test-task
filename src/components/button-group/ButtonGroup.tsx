@@ -1,7 +1,7 @@
 import { styled } from '@linaria/react'
 import { FC, useState } from 'react'
 
-import { Colors } from '@ts/enums/colors'
+import { COLORS } from '@ts/constants/colors'
 
 type ButtonGroupProps = {
   onButtonClick(id: number): void
@@ -57,22 +57,22 @@ const Button = styled.button`
   flex-grow: 1;
   place-items: center;
   border-radius: 0px;
-  background-color: ${Colors.white};
-  border: 1px solid ${Colors.lightGray};
+  background-color: ${COLORS.WHITE};
+  border: 1px solid ${COLORS.LIGHT_GRAY};
   transition: all 300ms;
   text-transform: uppercase;
   font-weight: 600;
   font-size: 12px;
-  color: ${Colors.black};
+  color: ${COLORS.BLACK};
 
   &:hover {
-    background-color: ${Colors.lightGray};
+    background-color: ${COLORS.LIGHT_GRAY};
     cursor: pointer;
   }
 
   &.active {
-    background-color: ${Colors.blue};
-    color: ${Colors.white};
+    background-color: ${COLORS.BLUE};
+    color: ${COLORS.WHITE};
   }
 `
 

@@ -1,7 +1,7 @@
 import { styled } from '@linaria/react'
 import { FC, useCallback } from 'react'
 
-import { Colors } from '@ts/enums/colors'
+import { COLORS } from '@ts/constants/colors'
 
 type CheckboxProps = {
   label: string
@@ -80,7 +80,7 @@ const HiddenCheckbox = styled(DefaultInput)`
 
 const Icon = styled.svg`
   fill: none;
-  stroke: ${Colors.checkboxBlue};
+  stroke: ${COLORS.CHECKBOX_BLUE};
   stroke-width: 2px;
 `
 
@@ -93,11 +93,11 @@ const StyledCheckbox = styled.div<CustomCheckboxProps>`
   height: 20px;
   border-radius: 2px;
   border: 2px solid
-    ${(props) => (props.checked ? Colors.checkboxBlue : Colors.checkboxGray)};
+    ${(props) => (props.checked ? COLORS.CHECKBOX_BLUE : COLORS.CHECKBOX_GRAY)};
   transition: all 150ms;
 
   ${HiddenCheckbox}:focus + & {
-    box-shadow: 0 0 0 3px ${Colors.checkboxShadowBlue};
+    box-shadow: 0 0 0 3px ${COLORS.CHECKBOX_SHADOW_BLUE};
   }
   ${Icon} {
     visibility: ${(props) => (props.checked ? 'visible' : 'hidden')};
