@@ -9,11 +9,11 @@ export function getHHMMfromDate(date: Date) {
 }
 
 export function getTimeInterval(time: string, minutes: number) {
-  const d = new Date(Date.parse(time))
+  const firstDate = new Date(Date.parse(time))
   const milliseconds = minutes * 60 * 1000
-  const d2 = new Date(d.getTime() + milliseconds)
+  const secondDate = new Date(firstDate.getTime() + milliseconds)
 
-  return getHHMMfromDate(d) + ' - ' + getHHMMfromDate(d2)
+  return getHHMMfromDate(firstDate) + ' - ' + getHHMMfromDate(secondDate)
 }
 
 export function getHHMMfromMinutes(minutes: number) {
