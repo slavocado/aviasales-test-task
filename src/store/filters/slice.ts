@@ -2,12 +2,12 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import { FastFilter, TransfersFilter } from '@ts/types/filters'
 
-export type TicketsState = {
+export type FiltersState = {
   transfersFilter?: TransfersFilter
   fastFilter?: FastFilter
 }
 
-const initialState: TicketsState = {}
+const initialState: FiltersState = {}
 
 export const filtersSlice = createSlice({
   name: 'filters',
