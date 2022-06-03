@@ -5,7 +5,7 @@ export function getHHMMfromDate(date: Date) {
   const minutes = String(date.getMinutes())
   const minutesToPrint = minutes.length === 2 ? minutes : '0' + minutes
 
-  return hoursToPrint + ':' + minutesToPrint
+  return `${hoursToPrint} : ${minutesToPrint}`
 }
 
 export function getTimeInterval(time: string, minutes: number) {
