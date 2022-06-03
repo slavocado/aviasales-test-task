@@ -2,14 +2,17 @@ const MINUTES_IN_HOUR = 60
 const SECONDS_IN_MINUTE = 60
 const MILLISECONS_IN_SECOND = 1000
 
+function getTwoDigitNumber(number: string): string {
+  // if number has one digit - add 0 to its begining
+  return number.length === 2 ? number : '0' + number
+}
+
 export function getHHMMfromDate(date: Date) {
   const hours = String(date.getHours())
-  // if hours has one digit - add 0 to its begining
-  const hoursToPrint = hours.length === 2 ? hours : '0' + hours
+  const hoursToPrint = getTwoDigitNumber(hours)
 
   const minutes = String(date.getMinutes())
-  // if minutes has one digit - add 0 to its begining
-  const minutesToPrint = minutes.length === 2 ? minutes : '0' + minutes
+  const minutesToPrint = getTwoDigitNumber(minutes)
 
   return `${hoursToPrint} : ${minutesToPrint}`
 }
